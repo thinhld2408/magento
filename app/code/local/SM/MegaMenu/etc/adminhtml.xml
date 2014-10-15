@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+
+<config>
+    <menu>
+        <sm translate="title" >
+            <title>SM</title>
+            <sort_order>15</sort_order>
+            <children>
+                <sm_megamenu translate="title" module="sm_megamenu">
+                    <title>Menu Manager</title>
+                    <action>menumanager/adminhtml_index/index</action>
+                    <sort_order>0</sort_order>
+                </sm_megamenu>
+            </children>
+        </sm>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <sm_megamenu translate="title" module="sm_megamenu">
+                        <children>
+                            <sm_megamenu translate="title" module="sm_megamenu">
+                                <title>Menu</title>
+                                <sort_order>25</sort_order>
+                            </sm_megamenu>
+                        </children>
+                    </sm_megamenu>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>
+

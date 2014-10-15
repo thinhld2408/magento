@@ -1,0 +1,62 @@
+
+* {
+    margin:0;
+    padding:0;
+}
+
+html{
+    font-size: 20px;
+    font-family: Arial, Helvetica, Tahoma, Verdana, Sans-Serif;
+}
+body{
+
+}
+.main_page{
+    width:100%;
+
+    border:2px solid red;
+    margin: 0 auto;
+}
+
+.header{
+    width: 100%;
+    border:2px solid blue;
+}
+
+.center{
+
+    width:100%;
+    border:2px solid yellow;
+}
+.left{
+    height:100%;
+    width:24%;
+    float:left;
+    border:2px solid purple;
+
+}
+
+.content{
+    height:100%;
+    width:50%;
+    float:left;
+    border:2px solid pink;
+}
+.right{
+    height:100%;
+    width:24%;
+    float:right;
+    border:2px solid brown;
+}
+.block{
+    width:100px;
+    height:100px;
+    margin:10px 10px 10px 10px;
+    border: 2px solid;
+    text-align: center;
+}
+.banner{
+    text-align: center;
+    margin: 5px 5px 5px 5px;
+}
+

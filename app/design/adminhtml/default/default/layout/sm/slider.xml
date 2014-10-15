@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<layout>
+    <sm_slider_admin_adminhtml_slider_index>
+        <reference name="content">
+            <block type="sm_slider/adminhtml_slider" name="slidermanager_slider_grid" />
+        </reference>
+    </sm_slider_admin_adminhtml_slider_index>
+
+    <sm_slider_admin_adminhtml_slider_edit>
+        <reference name="content">
+            <block type="sm_slider/adminhtml_slider_edit" name="slidermanager_slider_edit" />
+        </reference>
+
+        <reference name="left">
+            <block type="sm_slider/adminhtml_slider_edit_tabs" name="slidermanager_slider_edit_tabs">
+                <block type="sm_slider/adminhtml_slider_edit_tab_main" name="slidermanager_slider_edit_tab_main" />
+                <action method="addTab"><name>main_section</name><block>slidermanager_slider_edit_tab_main</block></action>
+            </block>
+        </reference>
+    </sm_slider_admin_adminhtml_slider_edit>
+
+    <sm_slider_admin_adminhtml_slider_edit_item>
+        <reference name="content">
+            <block type="sm_slider/adminhtml_slider_item_edit" name="slidermanager_slider_item_edit" />
+        </reference>
+    </sm_slider_admin_adminhtml_slider_edit_item>
+</layout>

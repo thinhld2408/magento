@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<layout>
+    <default>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_css</type>
+                <file>css/red.css</file>
+            </action>
+            <action method="addItem">
+                <type>skin_css</type>
+                <file>css/font-awesome.min.css</file>
+            </action>
+        </reference>
+        <reference name="header">
+            <action method="unsetChild">
+                <name>topMenu</name>
+            </action>
+            <block type="sm_megamenu/menu" name="topMenu" template="sm/megamenu.phtml"/>
+        </reference>
+    </default>
+</layout>

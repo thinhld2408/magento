@@ -1,0 +1,116 @@
+<head>
+<style>
+    * {
+        margin:0;
+        padding:0;
+    }
+
+    html{
+        font-size: 20px;
+        font-family: Arial, Helvetica, Tahoma, Verdana, Sans-Serif;
+    }
+    body{
+
+    }
+    .main_page{
+        width:100%;
+        margin:0 auto;
+        border:2px solid red;
+        background-color: orange;
+    }
+
+    .header{
+        height:20%;
+        width: 100%;
+        border:2px solid blue;
+        background-color: #808080;
+    }
+
+    .center{
+        width:100%;
+        border:2px solid yellow;
+    }
+
+    .left{
+        background-color: hotpink;
+        width:24%;
+        float:left;
+        border:2px solid purple;
+    }
+
+    .content{
+        background-color: sienna;
+        width:50%;
+        float:left;
+        border:2px solid pink;
+    }
+    .right{
+        background-color: skyblue;
+        width:24%;
+        float:right;
+        border:2px solid brown;
+    }
+    .footer{
+        background-color: olivedrab;
+        width: 100%;
+        border:2px solid blue;
+    }
+    .bread_crumbs{
+        background-color: springgreen ;
+        width:100%;
+        float:right;
+        border:2px solid brown;
+    }
+    .global_notices{
+        background-color: burlywood ;
+        width:100%;
+        float:right;
+        border:2px solid brown;
+    }
+    #content{
+        background-color: #ffff00 ;
+    }
+</style>
+
+</head>
+<?php ?>
+<body>
+    <div class="main_page">
+        <?php echo $this->getChildHtml('thinhld_notices') ?>
+        <div class="page">
+            <div class="header">
+                <?php echo $this->getChildHtml('thinhld_Header') ?>
+                <div class="template">
+                    <?php echo $this->getChildHtml('thinhld_links') ?>
+                </div>
+                <div class="logo"></div>
+            </div>
+            <div style="clear: both"></div>
+            <div class="center">
+                <div class="bread_crumbs">
+                    <?php echo $this->getChildHtml('thinhld_breadcrumbs') ?>
+                </div>
+                <div class="left">
+                    <?php echo $this->getChild('thinhld_left')->getName();?>
+                    <?php echo $this->getChildHtml('thinhld_left') ?>
+                </div>
+                <div class="content">
+                    <div class="messager">
+                        <?php echo $this->getChild('thinhld_messager')->getName();?>
+                        <?php echo $this->getChildHtml('thinhld_messager') ?>
+                    </div>
+                    <div id="content">
+                        <?php echo $this->getChild('thinhld_content')->getName();?>
+                        <?php echo $this->getChildHtml('thinhld_content') ?>
+                    </div>
+                </div>
+                <div class="right">
+                    <?php echo $this->getChild('thinhld_right')->getName();?>
+                    <?php echo $this->getChildHtml('thinhld_right') ?>
+                </div>
+            </div>
+        </div>
+        <div style="clear: both"></div>
+        <div class="footer"><?php echo $this->getChildHtml('thinhld_footer') ?></div>
+    </div>
+</body>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Training_RenderLayout>
+            <version>0.1.0</version>
+        </Training_RenderLayout>
+    </modules>
+    <frontend>
+        <routers>
+            <quynh>
+                <use>standard</use>
+                <args>
+                    <module>Training_RenderLayout</module>
+                    <frontName>quynh</frontName>
+                </args>
+            </quynh>
+        </routers>
+    </frontend>
+</config>

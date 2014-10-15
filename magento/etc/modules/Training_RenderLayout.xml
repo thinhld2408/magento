@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Training_RenderLayout>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Training_RenderLayout>
+    </modules>
+</config>

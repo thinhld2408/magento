@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<layout>
+    <default>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_css</type>
+                <file>css/megamenu.css</file>
+            </action>
+        </reference>
+        <reference name="header">
+            <action method="unsetChild">
+                <name>topMenu</name>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="sm_megamenu/menu" name="topMenu" template="sm/megamenu.phtml"/>
+        </reference>
+    </default>
+</layout>

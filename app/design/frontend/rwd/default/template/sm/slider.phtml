@@ -1,0 +1,98 @@
+
+<?php
+        $sliderShow = $this->getSliderShow();
+        $slider = $sliderShow['slider'];
+        $item = $sliderShow['item'];
+        $baseUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+?>
+<?php  if(isset($sliderShow) && $sliderShow != null){ ?>
+<style>
+    /* Demo Styles */
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 13px;
+        line-height: 1.5;
+    }
+    .swiper-container {
+        width: 99%;
+        height: 450px;
+        color: #fff;
+        text-align: center;
+    }
+    .swiper-slide .title {
+        font-style: italic;
+        font-size: 42px;
+        margin-top: 80px;
+        margin-bottom: 0;
+        line-height: 45px;
+    }
+    .swiper-slide p {
+        font-style: italic;
+        font-size: 25px;
+    }
+    .pagination {
+        position: absolute;
+        z-index: 20;
+        left: 10px;
+        bottom: 10px;
+    }
+    .swiper-pagination-switch {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 8px;
+        background: #555;
+        margin-right: 5px;
+        opacity: 0.8;
+        border: 1px solid #fff;
+        cursor: pointer;
+    }
+    .swiper-active-switch {
+        background: #fff;
+    }
+</style>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <?php foreach($item as $value){ ?>
+                <div class="swiper-slide"> <img alt="" src="<?php echo $baseUrl.''.$value['image']?>" width="<?php echo $slider['width'] ?>" height="<?php echo $slider['height'] ?>"/>
+                    <div class="content-slide">
+                        <p class="title">Slide with HTML</p>
+                        <p>You can put any HTML inside of slide with any layout, not only images, even another Swiper!</p>
+                    </div>
+                </div>
+
+            <?php } ?>
+
+        </div>
+        <div class="pagination"></div>
+    </div>
+<script type="text/javascript">
+    //<![CDATA[
+    var $j = jQuery.noConflict();
+    //]]>
+</script>
+<script>
+
+    var mySwiper = new Swiper('.swiper-container',{
+        pagination: '.pagination',
+        autoplay:'1',
+        mode: '<?php echo $slider['mode'];?>',
+        loop:true,
+        speed:'2000',
+        grabCursor: true,
+        paginationClickable: true
+    })
+    $('.arrow-left').on('click', function(e){
+        e.preventDefault()
+        mySwiper.swipePrev()
+    })
+    $('.arrow-right').on('click', function(e){
+        e.preventDefault()
+        mySwiper.swipeNext()
+    })
+</script>
+<?php }else{
+
+
+} ?>

@@ -1,0 +1,27 @@
+<!--
+/**
+ * Fashion Style
+ *
+ * NOTICE OF LICENSE
+ *
+
+ * DISCLAIMER
+ *
+ *
+ * @category    design
+ * @package     fashion_style/default
+ * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+-->
+
+<layout version="0.1.0">
+    <default>
+        <reference name="header">
+              <block type="Training_MagentoDay9/html_header" name="logo" as="logo"/>
+        </reference>
+    </default>
+    <training_layout_index_index translate="label" module="page">
+
+    </training_layout_index_index>
+</layout>

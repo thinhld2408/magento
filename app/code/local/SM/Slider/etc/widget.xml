@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<widgets>
+    <sm_slider type="sm_slider/slider" translate="name description" module="sm_slider">
+        <name>Slider Widget</name>
+        <description>Widget Select Sliders</description>
+        <parameters>
+            <template translate="label">
+                <label>Frontend Template</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>select</type>
+                <values>
+                    <slider translate="label">
+                        <value>sm/slider.phtml</value>
+                        <label>Slide-1</label>
+                    </slider>
+                </values>
+            </template>
+        </parameters>
+    </sm_slider>
+</widgets> 

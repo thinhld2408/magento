@@ -1,0 +1,33 @@
+<!--
+/**
+ * Fashion Style
+ *
+ * NOTICE OF LICENSE
+ *
+
+ * DISCLAIMER
+ *
+ *
+ * @category    design
+ * @package     fashion_style/default
+ * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+-->
+
+
+
+<layout version="0.1.0">
+    <!--<training_layout_index_index>-->
+        <!--<reference name="root">-->
+            <!--<action method="setTemplate"><template>page/3column.phtml</template></action>-->
+
+            <!--<block type="core/text_list" name="right_render" as="right_render"/>-->
+            <!--<block type="core/text_list" name="left_render" as="left_render"/>-->
+            <!--<block type="core/text_list" name="content_render" as="content_render"/>-->
+        <!--</reference>-->
+    <!--</training_layout_index_index>-->
+    <training_layout_index_index translate="label" module="page">
+
+    </training_layout_index_index>
+</layout>
