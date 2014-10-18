@@ -11,7 +11,7 @@ class SM_MegaMenu_Block_Adminhtml_Menu_Edit_Tab_Main extends Mage_Adminhtml_Bloc
 {
     protected function _prepareForm()
     {
-        /* @var $model sm_megamenu_Model_Menu */
+        /* @var $model SM_MegaMenu_Model_Menu */
         $model = Mage::registry('menumanager_menu');
 
         $form = new Varien_Data_Form();
@@ -142,3 +142,4 @@ class SM_MegaMenu_Block_Adminhtml_Menu_Edit_Tab_Main extends Mage_Adminhtml_Bloc
         return false;
     }
 }
+?>

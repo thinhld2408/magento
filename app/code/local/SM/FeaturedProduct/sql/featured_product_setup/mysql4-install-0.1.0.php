@@ -25,14 +25,18 @@ $setup->addAttribute('catalog_product', 'is_featured', array(
     'searchable'        => false,
     'filterable'        => false,
     'comparable'        => false,
-    'option'            => array (
-        'value' => array('1' => array('Yes'),
-            '0' => array('No'),
-        )
-    ),
     'visible_on_front'  => false,
     'visible_in_advanced_search' => false,
     'unique'            => false
 ));
 
 $installer->endSetup();
+
+//
+//$installer = $this;
+//$setup = new Mage_Eav_Model_Entity_Setup('core_setup');
+//$installer->startSetup();
+//// Remove Product Attribute
+//$installer->removeAttribute('catalog_product', 'is_featured');
+//
+//$installer->endSetup();

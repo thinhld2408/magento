@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout>
+    <default>
+        <reference name="content">
+            <block type="bestseller_product/product_list" name="bestseller.product" template ="sm/product/bestseller.phtml"/>
+        </reference>
+    </default>
+</layout>

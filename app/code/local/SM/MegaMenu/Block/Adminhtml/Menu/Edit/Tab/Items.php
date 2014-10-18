@@ -22,7 +22,7 @@ class SM_MegaMenu_Block_Adminhtml_Menu_Edit_Tab_Items extends Mage_Adminhtml_Blo
      */
     protected function _prepareCollection()
     {
-        /* @var $collection sm_megamenu_Model_Resource_Item_Collection */
+        /* @var $collection SM_MegaMenu_Model_Resource_Item_Collection */
         $collection = Mage::getModel('sm_megamenu/item')->getResourceCollection()
             ->addMenuFilter(Mage::registry('menumanager_menu'))
             ->setPositionOrder();
@@ -53,7 +53,7 @@ class SM_MegaMenu_Block_Adminhtml_Menu_Edit_Tab_Items extends Mage_Adminhtml_Blo
             'header'    => Mage::helper('sm_megamenu')->__('Parent'),
             'index'     => 'parent_id',
             'type'      => 'options',
-            'renderer'  => 'sm_megamenu_Block_Adminhtml_Menu_Edit_Tab_Renderer_Parent',
+            'renderer'  => 'SM_MegaMenu_Block_Adminhtml_Menu_Edit_Tab_Renderer_Parent',
             'options'   => $ItemModel->getCollection()
                 ->addMenuFilter($menuModel)
                 ->toItemOptionArray(),

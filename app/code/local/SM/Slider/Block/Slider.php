@@ -1,4 +1,5 @@
 <?php
+
 class SM_Slider_Block_Slider extends Mage_Core_Block_Template
     implements Mage_Widget_Block_Interface
 {
@@ -21,32 +22,43 @@ class SM_Slider_Block_Slider extends Mage_Core_Block_Template
      */
     protected function _toHtml()
     {
+        $html = '';
+        $config = $this->getData('slider_selected');
+        if (empty($config)) {
+            return $html;
+        }
+        $sliderId = $config;
+        $sliderShow = array();
+        $item = $this->getSliderShow($sliderId);
+        if ($item) {
+            $sliderShow[] = $item;
+        }
+
+        $this->assign('sliderShow', $sliderShow);
         return parent::_toHtml();
     }
 
-    public function getSliderShow()
+    public function getSliderShow($sliderId)
     {
         $data = array();
-        if (Mage::getStoreConfig('slider/config/enabled') == 1) {
-            $sliderId = Mage::getStoreConfig('slider/config/slider');
-            $slider = $this->getSlider($sliderId);
-            if ($slider != false) {
-                $slideItem = $this->getSliderItem($sliderId);
-                $data['slider'] = array(
-                    'mode' => $slider['mode'],
-                    'width' => $slider['width'],
-                    'height' => $slider['height']
+        $slider = $this->getSlider($sliderId);
+        if ($slider != false) {
+            $slideItem = $this->getSliderItem($sliderId);
+            $data['slider'] = array(
+                'mode' => $slider['mode'],
+                'width' => $slider['width'],
+                'height' => $slider['height']
+            );
+            foreach ($slideItem as $value) {
+                $data['item'][] = array(
+                    'name' => $value->getItem_name(),
+                    'title' => $value->getItem_title(),
+                    'image' => $value->getItem_picture()
                 );
-                foreach ($slideItem as $value) {
-                    $data['item'][] = array(
-                        'name' => $value->getItem_name(),
-                        'title' => $value->getItem_title(),
-                        'image' => $value->getItem_picture()
-                    );
-                }
             }
-
         }
+
+
         return $data;
     }
 

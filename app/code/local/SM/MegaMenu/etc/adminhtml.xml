@@ -14,18 +14,24 @@
             </children>
         </sm>
     </menu>
+
     <acl>
         <resources>
             <admin>
                 <children>
-                    <sm_megamenu translate="title" module="sm_megamenu">
+                    <system>
                         <children>
-                            <sm_megamenu translate="title" module="sm_megamenu">
-                                <title>Menu</title>
-                                <sort_order>25</sort_order>
-                            </sm_megamenu>
+                            <config>
+                                <children>
+                                    <megamenu translate="title" module="sm_megamenu">
+                                        <title>Menu</title>
+                                        <sort_order>25</sort_order>
+                                    </megamenu>
+                                </children>
+                            </config>
                         </children>
-                    </sm_megamenu>
+                    </system>
+
                 </children>
             </admin>
         </resources>

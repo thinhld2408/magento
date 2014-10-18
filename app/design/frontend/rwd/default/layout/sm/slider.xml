@@ -6,21 +6,10 @@
                 <type>skin_css</type>
                 <file>css/idangerous.swiper.css</file>
             </action>
-            <!--<script src="js/jquery-1.10.1.min.js"></script>-->
-
             <action method="addItem">
                 <type>skin_js</type>
-                <file>js/idangerous.swiper.js</file>
-            </action>
-            <action method="addItem">
-                <type>skin_js</type>
-                <file>js/jquery-1.10.1.min.js</file>
+                <file>js/idangerous.swiper-2.0.min.js</file>
             </action>
         </reference>
-        <!--<reference name="content">-->
-            <!--<block type="sm_slider/slider" name="sm.slider" template="sm/slider.phtml"/>-->
-        <!--</reference>-->
     </default>
-
-
 </layout>

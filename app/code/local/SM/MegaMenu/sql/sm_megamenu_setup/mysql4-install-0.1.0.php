@@ -31,10 +31,10 @@ $table = $installer->getConnection()
         ), 'Menu Type'
     )
     ->addColumn(
-        'css_class', Varien_Db_Ddl_Table::TYPE_VARCHAR, 255, array(
+        'position', Varien_Db_Ddl_Table::TYPE_VARCHAR, 255, array(
             'nullable' => true,
             'default'  => null,
-        ), 'Menu CSS Class'
+        ), 'Position of Menu'
     )
     ->addColumn(
         'is_active', Varien_Db_Ddl_Table::TYPE_TINYINT, null, array(
@@ -124,10 +124,10 @@ $table = $installer->getConnection()
         ), 'Item Url'
     )
     ->addColumn(
-        'type', Varien_Db_Ddl_Table::TYPE_VARCHAR, 255, array(
+        'type_view', Varien_Db_Ddl_Table::TYPE_VARCHAR, 255, array(
             'nullable'  => false,
-            'default'   => 'same_window',
-        ), 'Item Open Type'
+            'default'   => 'tree',
+        ), 'Item Drop Down style'
     )
     ->addColumn(
         'item_type', Varien_Db_Ddl_Table::TYPE_VARCHAR, 255, array(
@@ -136,26 +136,20 @@ $table = $installer->getConnection()
         ), 'Item Show Type'
     )
     ->addColumn(
-        'item_category', Varien_Db_Ddl_Table::TYPE_VARCHAR, 255, array(
+        'item_list_id', Varien_Db_Ddl_Table::TYPE_VARCHAR, 255, array(
             'nullable'  => true,
             'default'   => NULL,
-        ), ' Category'
+        ), ' Category or CMS Block ID'
     )
     ->addColumn(
-        'cms_block', Varien_Db_Ddl_Table::TYPE_VARCHAR, 255, array(
-            'nullable'  => true,
-            'default'   => NULL,
-        ), ' Block'
-    )
-    ->addColumn(
-        'css_class', Varien_Db_Ddl_Table::TYPE_VARCHAR, 255, array(
+        'number_column', Varien_Db_Ddl_Table::TYPE_VARCHAR, 255, array(
             'nullable' => true,
             'default'  => null,
-        ), 'Item CSS Class'
+        ), 'Number Column If Type View is Column'
     )
     ->addColumn(
         'position', Varien_Db_Ddl_Table::TYPE_TINYINT, null, array(
-            'nullable'  => false,
+            'nullable'  => true,
             'default'   => '0',
         ), 'Item Position'
     )
@@ -175,6 +169,6 @@ $table = $installer->getConnection()
         'menu_id', $installer->getTable('sm_megamenu/menu'), 'menu_id',
         Varien_Db_Ddl_Table::ACTION_CASCADE, Varien_Db_Ddl_Table::ACTION_CASCADE
     )
-    ->setComment('MenuManager Menu Item Table');
+    ->setComment('Menu Manager Item Table');
 
 $installer->getConnection()->createTable($table);

@@ -16,6 +16,7 @@ class SM_MegaMenu_Model_Item extends Mage_Core_Model_Abstract
     const TYPE_CATEGORY_LINK = 'category_link';
     const TYPE_CUSTOM_LINK = 'custom_link';
     const TYPE_BLOCK_LINK = 'block_link';
+    const TYPE_MEGA_MENU = 'mega_link';
 
     protected function _construct()
     {
@@ -42,9 +43,29 @@ class SM_MegaMenu_Model_Item extends Mage_Core_Model_Abstract
             self::TYPE_CATEGORY_LINK => Mage::helper('sm_megamenu')->__('Category Link'),
             self::TYPE_CUSTOM_LINK => Mage::helper('sm_megamenu')->__('Custom Link'),
             self::TYPE_BLOCK_LINK => Mage::helper('sm_megamenu')->__('Block Link'),
+            self::TYPE_MEGA_MENU => Mage::helper('sm_megamenu')->__('Mega Menu Link'),
         );
-
         return $types;
+    }
+    public function getTypeView(){
+
+        $types = array(
+            'tree' => Mage::helper('sm_megamenu')->__('Tree Type Show'),
+            'column' => Mage::helper('sm_megamenu')->__('Column Type Show')
+        );
+        return $types;
+
+    }
+    public function getColumnView(){
+
+        $types = array(
+            '1' => Mage::helper('sm_megamenu')->__('1 Column'),
+            '2' => Mage::helper('sm_megamenu')->__('2 Columns'),
+            '3' => Mage::helper('sm_megamenu')->__('3 Columns'),
+            '4' => Mage::helper('sm_megamenu')->__('4 Columns')
+        );
+        return $types;
+
     }
 
 }

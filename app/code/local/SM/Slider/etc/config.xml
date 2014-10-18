@@ -19,11 +19,9 @@
                         <table>sm_slider_slider</table>
                     </slider>
                     <item>
-                        <table>sm_slider_slider_item</table>
+                        <table>sm_slider_item</table>
                     </item>
-                    <!--<slider_store>-->
-                        <!--<table>sm_slider_sli_store</table>-->
-                    <!--</slider_store>-->
+
                 </entities>
             </sm_slider_resource>
         </models>

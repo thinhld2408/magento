@@ -1,11 +1,13 @@
 
 <?php
-        $sliderShow = $this->getSliderShow();
-        $slider = $sliderShow['slider'];
-        $item = $sliderShow['item'];
+        $sliderView = $sliderShow;
+        $slider = $sliderView[0]['slider'];
+        $item = $sliderView[0]['item'];
         $baseUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
 ?>
-<?php  if(isset($sliderShow) && $sliderShow != null){ ?>
+
+
+<?php if(isset($sliderView) && $sliderView != null){ ?>
 <style>
     /* Demo Styles */
     body {
@@ -17,7 +19,7 @@
     .swiper-container {
         width: 99%;
         height: 450px;
-        color: #fff;
+        color: black;
         text-align: center;
     }
     .swiper-slide .title {
@@ -51,22 +53,40 @@
     .swiper-active-switch {
         background: #fff;
     }
+    .caption {
+        z-index: 3;
+        width: <?php echo $slider['width'] ?>;
+        position: absolute;
+        background: black;
+        color: white;
+        bottom:10px;
+
+    }
+    .slide-image{
+        z-index: 2;
+        position: relative;
+
+    }
 </style>
-    <div class="swiper-container">
+    <div class="swiper-container slider">
         <div class="swiper-wrapper">
             <?php foreach($item as $value){ ?>
-                <div class="swiper-slide"> <img alt="" src="<?php echo $baseUrl.''.$value['image']?>" width="<?php echo $slider['width'] ?>" height="<?php echo $slider['height'] ?>"/>
-                    <div class="content-slide">
-                        <p class="title">Slide with HTML</p>
-                        <p>You can put any HTML inside of slide with any layout, not only images, even another Swiper!</p>
-                    </div>
+                <div class="swiper-slide">
+
+                        <div class="slide-image">
+
+                            <img alt="" src="<?php echo $baseUrl.''.$value['image']?>" width="<?php echo $slider['width'] ?>" height="<?php echo $slider['height'] ?>"/>
+                        </div>
+                        <div class="caption">
+                            <p>You can put any HTML inside of </p>
+                        </div>
                 </div>
-
             <?php } ?>
-
         </div>
         <div class="pagination"></div>
     </div>
+
+
 <script type="text/javascript">
     //<![CDATA[
     var $j = jQuery.noConflict();
@@ -74,7 +94,7 @@
 </script>
 <script>
 
-    var mySwiper = new Swiper('.swiper-container',{
+    var mySwiper = new Swiper('.slider',{
         pagination: '.pagination',
         autoplay:'1',
         mode: '<?php echo $slider['mode'];?>',
@@ -82,7 +102,7 @@
         speed:'2000',
         grabCursor: true,
         paginationClickable: true
-    })
+    });
     $('.arrow-left').on('click', function(e){
         e.preventDefault()
         mySwiper.swipePrev()
@@ -96,3 +116,4 @@
 
 
 } ?>
+

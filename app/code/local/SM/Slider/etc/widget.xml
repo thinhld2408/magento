@@ -4,6 +4,13 @@
         <name>Slider Widget</name>
         <description>Widget Select Sliders</description>
         <parameters>
+            <slider_selected>
+                <label>Select Slider</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>select</type>
+                <source_model>sm_slider/adminhtml_slider</source_model>
+            </slider_selected>
             <template translate="label">
                 <label>Frontend Template</label>
                 <visible>1</visible>

@@ -90,6 +90,13 @@ class SM_MegaMenu_Block_Menu extends Mage_Core_Block_Template
                 $html .= "</ul>";
             } else {
                 $html .= "";
+        $allCats = Mage::getModel('catalog/category')->getCollection()
+            ->addAttributeToSelect('*')
+            ->addAttributeToFilter('is_active', '1')
+            ->addAttributeToFilter('include_in_menu', '1')
+            ->addAttributeToFilter('parent_id', array('eq' => $parentId))
+            ->addAttributeToSort('position', 'asc')
+            ->addUrlRewriteToResult();
             }
 
         } else {

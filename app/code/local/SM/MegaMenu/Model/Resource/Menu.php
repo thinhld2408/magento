@@ -39,7 +39,7 @@ class SM_MegaMenu_Model_Resource_Menu extends Mage_Core_Model_Resource_Db_Abstra
                 ->__('A menu identifier with the same properties already exists in the selected store.'));
         }
 
-        Mage::app()->cleanCache(sm_megamenu_Model_Menu::CACHE_TAG);
+        Mage::app()->cleanCache(SM_MegaMenu_Model_Menu::CACHE_TAG);
 
         return $this;
     }

@@ -18,7 +18,7 @@
         <layout>
             <updates>
                 <featured_product>
-                    <file>sm/featuredProduct.xml</file>
+                    <file>sm/featured.xml</file>
                 </featured_product>
             </updates>
         </layout>

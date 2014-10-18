@@ -58,7 +58,7 @@ class SM_MegaMenu_Model_Resource_Item extends Mage_Core_Model_Resource_Db_Abstra
             $object->setIdentifier('menu_' . $object->getMenuId() . '_item_' . date('Y_m_d_H_i_s'));
         }
 
-        Mage::app()->cleanCache(sm_megamenu_Model_Menu::CACHE_TAG);
+        Mage::app()->cleanCache(SM_MegaMenu_Model_Menu::CACHE_TAG);
 
         return $this;
     }
