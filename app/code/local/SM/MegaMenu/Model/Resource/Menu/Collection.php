@@ -44,7 +44,7 @@ class SM_MegaMenu_Model_Resource_Menu_Collection
     /**
      * Join store relation table data if store filter is used
      *
-     * @return sm_megamenu_Model_Resource_Menu_Collection
+     * @return SM_MegaMenu_Model_Resource_Menu_Collection
      */
     protected function _renderFiltersBefore()
     {

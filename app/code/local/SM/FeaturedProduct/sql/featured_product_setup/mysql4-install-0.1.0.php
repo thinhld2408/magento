@@ -8,19 +8,38 @@ $installer->startSetup();
  */
 
 // adding attribute group
-$setup->addAttributeGroup('catalog_product', 'Default', 'Special Attributes', 1000);
 
 // the attribute added will be displayed under the group/tab Special Attributes in product edit page
-$setup->addAttribute('catalog_product', 'is_featured', array(
-    'label'             => 'Featured Product',
-    'type'              => 'int',
-    'input'             => 'select',
-    'backend'           => 'eav/entity_attribute_backend_array',
+$setup->addAttribute('catalog_product', 'featured_from_date', array(
+    'label'             => 'Featured Product From Date',
+    'group'             => 'Prices',
+    'input'             => 'date',
+    'type'              => 'datetime',
+    'attribute_set'     =>  'Default',
+    'backend'            => "eav/entity_attribute_backend_datetime",
     'frontend'          => '',
-    'source'            => 'featured_product/source_option',
     'global'            => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_GLOBAL,
     'visible'           => true,
-    'required'          => true,
+    'required'          => false,
+    'user_defined'      => true,
+    'searchable'        => false,
+    'filterable'        => false,
+    'comparable'        => false,
+    'visible_on_front'  => false,
+    'visible_in_advanced_search' => false,
+    'unique'            => false
+));
+$setup->addAttribute('catalog_product', 'featured_to_date', array(
+    'label'             => 'Featured Product To Date',
+    'group'             => 'Prices',
+    'input'             => 'date',
+    'type'              => 'datetime',
+    'attribute_set'     =>  'Default',
+    'backend'            => "eav/entity_attribute_backend_datetime",
+    'frontend'          => '',
+    'global'            => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_GLOBAL,
+    'visible'           => true,
+    'required'          => false,
     'user_defined'      => true,
     'searchable'        => false,
     'filterable'        => false,

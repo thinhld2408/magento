@@ -7,8 +7,8 @@
             <sort_order>15</sort_order>
             <children>
                 <sm_megamenu translate="title" module="sm_megamenu">
-                    <title>Menu Manager</title>
-                    <action>menumanager/adminhtml_index/index</action>
+                    <title>MegaMenu Manager</title>
+                    <action>adminhtml/adminhtml_menu/index</action>
                     <sort_order>0</sort_order>
                 </sm_megamenu>
             </children>
@@ -19,6 +19,10 @@
         <resources>
             <admin>
                 <children>
+                    <sm_megamenu translate="title" module="sm_megamenu">
+                        <title>This Is my Mega Menu Modules</title>
+                        <sort_order>1</sort_order>
+                    </sm_megamenu>
                     <system>
                         <children>
                             <config>
@@ -31,7 +35,6 @@
                             </config>
                         </children>
                     </system>
-
                 </children>
             </admin>
         </resources>

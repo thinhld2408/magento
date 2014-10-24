@@ -18,7 +18,7 @@ class SM_MegaMenu_Model_Source_Cms_Block
         $option = array();
         foreach($this->_options as $value){
             $option[]=array(
-                    'value' => $value->getIdentifier(),
+                    'value' => $value->getId(),
                     'label' =>  $value->getTitle(),
             );
         }

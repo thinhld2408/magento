@@ -51,31 +51,24 @@ class SM_MegaMenu_Block_Adminhtml_Menu_Edit_Tab_Main extends Mage_Adminhtml_Bloc
             'required'  => true
         ));
 
-        $fieldset->addField('css_class', 'text', array(
-            'name'      => 'css_class',
-            'label'     => Mage::helper('sm_megamenu')->__('CSS Class'),
-            'title'     => Mage::helper('sm_megamenu')->__('CSS Class'),
-            'note'      => Mage::helper('cms')->__('Space Separated Class Names')
-        ));
 
         if (!Mage::app()->isSingleStoreMode()) {
             $fieldset->addField('store_id', 'multiselect', array(
-                'name'      => 'stores[]',
-                'label'     => Mage::helper('sm_megamenu')->__('Store View'),
-                'title'     => Mage::helper('sm_megamenu')->__('Store View'),
-                'required'  => true,
-                'values'    => Mage::getSingleton('adminhtml/system_store')
-                    ->getStoreValuesForForm(false, true)
+                'name' => 'stores[]',
+                'label' => Mage::helper('sm_megamenu')->__('Store View'),
+                'title' => Mage::helper('sm_megamenu')->__('Store View'),
+                'required' => true,
+                'values' => Mage::getSingleton('adminhtml/system_store')
+                        ->getStoreValuesForForm(false, true)
             ));
         } else {
             $fieldset->addField('store_id', 'hidden', array(
-                'name'      => 'stores[]',
-                'value'     => Mage::app()->getStore(true)->getId()
+                'name' => 'stores[]',
+                'value' => Mage::app()->getStore(true)->getId()
             ));
-
             $model->setStoreId(Mage::app()->getStore(true)->getId());
         }
-
+        
         $fieldset->addField('is_active', 'select', array(
             'label'     => Mage::helper('sm_megamenu')->__('Status'),
             'title'     => Mage::helper('sm_megamenu')->__('Menu Status'),
@@ -91,10 +84,7 @@ class SM_MegaMenu_Block_Adminhtml_Menu_Edit_Tab_Main extends Mage_Adminhtml_Bloc
             $model->setData('is_active', '1');
         }
 
-        Mage::dispatchEvent(
-            'adminhtml_cms_menu_edit_tab_main_prepare_form',
-            array('form' => $form)
-        );
+
 
         $form->setValues($model->getData());
         $this->setForm($form);

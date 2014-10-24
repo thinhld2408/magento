@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <productlabel translate="title" module="sm_megamenu">
+                                        <title>Label Product</title>
+                                        <sort_order>25</sort_order>
+                                    </productlabel>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

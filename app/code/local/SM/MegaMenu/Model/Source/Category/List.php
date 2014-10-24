@@ -15,7 +15,7 @@ class SM_MegaMenu_Model_Source_Category_List extends Varien_Object
             ->getCollection()
             ->addAttributeToSelect('name')
             ->addAttributeToSelect('level')
-
+            ->addFieldToFilter('parent_id', array('from'=> '1','to'=>'2' ))
             ->addFieldToFilter('is_active', array('eq'=>'1'))
             ->addUrlRewriteToResult();
 

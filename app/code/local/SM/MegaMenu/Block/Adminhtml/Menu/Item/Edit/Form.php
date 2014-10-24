@@ -10,8 +10,10 @@ class SM_MegaMenu_Block_Adminhtml_Menu_Item_Edit_Form
 {
     protected function _prepareForm()
     {
-        /* @var $model sm_megamenu_Model_Item */
+        /* @var $model SM_MegaMenu_Model_Item */
         $model = Mage::registry('menumanager_menu_item');
+
+
         $menuId = $this->getRequest()->getParam('menu_id');
 
         $form = new Varien_Data_Form(array(
@@ -42,6 +44,12 @@ class SM_MegaMenu_Block_Adminhtml_Menu_Item_Edit_Form
                 'name' => 'identifier',
             ));
         }
+        $fieldset->addField('title', 'text', array(
+            'name' => 'title',
+            'label' => Mage::helper('sm_megamenu')->__('Title'),
+            'title' => Mage::helper('sm_megamenu')->__('Title'),
+            'required' => true,
+        ));
         ///////////////////
 
         $fieldset->addField('item_type', 'select', array(
@@ -52,68 +60,71 @@ class SM_MegaMenu_Block_Adminhtml_Menu_Item_Edit_Form
             'options' => $model->getItemsTypes(),
         ));
 
-        $fieldset->addField('view_type', 'select', array(
+        $fieldset->addField('type_view', 'select', array(
             'label' => Mage::helper('sm_megamenu')->__('View Show Type'),
             'class' => 'required-entry',
             'required' => true,
-            'name' => 'view_type',
+            'name' => 'type_view',
             'options' => $model->getTypeView(),
         ));
 
-        $fieldset->addField('column_number', 'select', array(
+        $fieldset->addField('number_column', 'select', array(
             'label' => Mage::helper('sm_megamenu')->__('Number Column'),
             'class' => 'required-entry',
             'required' => true,
-            'name' => 'column_number',
+            'name' => 'number_column',
             'options' => $model->getColumnView(),
         ));
-        $fieldset->addField('test', 'text', array(
-            'label' => Mage::helper('sm_megamenu')->__('Test'),
-            'name' => 'test',
-            'after_element_html' => '<button type="button" onclick="alert(\'Stop clicking me!!\')">Do not click</button>'
-        ));
 
-        $fieldset->addField('nocode', 'checkbox', array(
-            'label' => Mage::helper('customer')->__('Event Element'),
-            'name'  => 'eventelem',
-            'id'    => 'eventelem',
-            'value'=> 1,
-            'onclick'=>'modifyTargetElement(this)'
-
-        ));
-        $fieldset->setAfterElementHtml('<script>
-            function modifyTargetElement(checkboxElem){
-                if(checkboxElem.checked){
-
-                    $("target_element").disabled=true;
-                }
-                else{
-                    $("target_element").disabled=false;
-                }
-            }
-        </script>');
+//        $fieldset->setAfterElementHtml('<script>
+//            function modifyTargetElement(checkboxElem){
+//                if(checkboxElem.checked){
+//
+//                    $("target_element").disabled=true;
+//                }
+//                else{
+//                    $("target_element").disabled=false;
+//                }
+//            }
+//        </script>');
 
 
         $this->setChild('form_after', $this->getLayout()
                 ->createBlock('adminhtml/widget_form_element_dependence')
                 ->addFieldMap('item_type', 'item_type')
-                ->addFieldMap('view_type', 'view_type')
-                ->addFieldMap('column_number', 'column_number')
+                ->addFieldMap('type_view', 'type_view')
+                ->addFieldMap('number_column', 'number_column')
                 ->addFieldMap('item_category', 'item_category')
+                ->addFieldMap('category', 'category')
+                ->addFieldMap('category_id', 'category_id')
                 ->addFieldMap('url', 'url')
                 ->addFieldMap('cms_block', 'cms_block')
-                ->addFieldDependence('item_category', 'item_type', 'category_link')
+                ->addFieldDependence('category_id', 'item_type', 'category_link')
+                ->addFieldDependence('category_id', 'type_view', 'tree')
                 ->addFieldDependence('cms_block', 'item_type', 'block_link')
+                ->addFieldDependence('cms_block', 'type_view', 'column')
                 ->addFieldDependence('url', 'item_type', 'custom_link')
-                ->addFieldDependence('column_number', 'view_type', 'column')
+                ->addFieldDependence('number_column', 'type_view', 'column')
+                ->addFieldDependence('number_column', 'type_view', 'column')
+                ->addFieldDependence('category', 'type_view', 'column')
+                ->addFieldDependence('category', 'item_type', 'category_link')
 
         );
 
-        $fieldset->addField('item_category', 'select', array(
+        $fieldset->addField('category_id', 'select', array(
                 'label' => Mage::helper('sm_megamenu')->__('Categories'),
                 'class' => 'required-entry',
                 'required' => true,
-                'name' => 'item_category',
+                'name' => 'category_id',
+                'values' =>
+                    Mage::getModel('sm_megamenu/source_category_list')->getAllOptions(true),
+            )
+        );
+        $fieldset->addField('category', 'multiselect', array(
+                'label' => Mage::helper('sm_megamenu')->__('Categories'),
+                'class' => 'required-entry',
+                'required' => true,
+                'name' => 'item_category[]',
                 'values' =>
                     Mage::getModel('sm_megamenu/source_category_list')->getAllOptions(true),
             )
@@ -121,7 +132,7 @@ class SM_MegaMenu_Block_Adminhtml_Menu_Item_Edit_Form
 
         $fieldset->addField('cms_block', 'multiselect', array(
             'label' => Mage::helper('sm_megamenu')->__('Block'),
-            'name' => 'cms_block',
+            'name' => 'cms_block[]',
             'values' => Mage::getModel('sm_megamenu/source_cms_block')->getAllBlock(),
         ));
 
@@ -133,12 +144,7 @@ class SM_MegaMenu_Block_Adminhtml_Menu_Item_Edit_Form
             'note' => Mage::helper('cms')->__('Use " / " For Item With Base Url.')
         ));
 
-        $fieldset->addField('title', 'text', array(
-            'name' => 'title',
-            'label' => Mage::helper('sm_megamenu')->__('Title'),
-            'title' => Mage::helper('sm_megamenu')->__('Title'),
-            'required' => true,
-        ));
+
 
         $fieldset->addField('parent_id', 'select', array(
             'name' => 'parent_id',
@@ -148,22 +154,6 @@ class SM_MegaMenu_Block_Adminhtml_Menu_Item_Edit_Form
                     ->addMenuFilter($menuId)
                     ->toItemOptionArray(),
             'required' => true,
-        ));
-
-
-        $fieldset->addField('type', 'select', array(
-            'name' => 'type',
-            'label' => Mage::helper('sm_megamenu')->__('Url Window Type'),
-            'title' => Mage::helper('sm_megamenu')->__('Url Window Type'),
-            'options' => $model->getAvailableTypes(),
-            'required' => true
-        ));
-
-        $fieldset->addField('css_class', 'text', array(
-            'name' => 'css_class',
-            'label' => Mage::helper('sm_megamenu')->__('CSS Class'),
-            'title' => Mage::helper('sm_megamenu')->__('CSS Class'),
-            'note' => Mage::helper('cms')->__('Space Separated Class Names')
         ));
 
         $fieldset->addField('position', 'text', array(
@@ -188,7 +178,24 @@ class SM_MegaMenu_Block_Adminhtml_Menu_Item_Edit_Form
         if (!$model->getId()) {
             $model->setData('is_active', '1');
         }
+        if($model->getData() != Null){
+//            echo "<pre>";
 
+            if( $model->getData("item_type")== "category_link" && $model->getData("type_view") == "column" ){
+                $model->setData('category', $model->getData('item_list_id')) ;
+
+            }
+            if( $model->getData("item_type")== "category_link" && $model->getData("type_view") == "tree" ){
+                $model->setData('category_id', $model->getData('item_list_id')) ;
+
+            }
+            if( $model->getData("item_type")== "block_link"){
+                $model->setData('cms_block', $model->getData('item_list_id')) ;
+
+            }
+
+
+        }
 
         $form->setValues($model->getData());
         $form->setUseContainer(true);

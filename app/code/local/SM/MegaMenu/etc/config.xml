@@ -48,13 +48,13 @@
     </global>
     <admin>
         <routers>
-            <sm_megamenu_admin>
-                <use>admin</use>
+            <adminhtml>
                 <args>
-                    <module>SM_MegaMenu</module>
-                    <frontName>menumanager</frontName>
+                    <modules>
+                        <SM_MegaMenu after="Mage_Adminhtml">SM_MegaMenu</SM_MegaMenu>
+                    </modules>
                 </args>
-            </sm_megamenu_admin>
+            </adminhtml>
         </routers>
     </admin>
     <adminhtml>

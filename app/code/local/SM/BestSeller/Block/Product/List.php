@@ -16,7 +16,7 @@ class SM_BestSeller_Block_Product_List extends Mage_Core_Block_Template
 
         // Date
         $date = new Zend_Date();
-        $toDate = $date->setDay(1)->getDate()->get('Y-MM-dd');
+        $toDate = $date->setDay(30)->getDate()->get('Y-MM-dd');
         $fromDate = $date->subMonth(1)->getDate()->get('Y-MM-dd');
 
         $collection = Mage::getResourceModel('catalog/product_collection')
@@ -25,7 +25,7 @@ class SM_BestSeller_Block_Product_List extends Mage_Core_Block_Template
             ->addPriceData()
             ->addTaxPercents()
             ->addUrlRewrite()
-        ->setPageSize('10')
+            ->setPageSize('10')
             ;
 
         $collection->getSelect()

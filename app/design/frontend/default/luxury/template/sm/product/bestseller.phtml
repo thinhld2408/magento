@@ -1,0 +1,38 @@
+<div style="clear:both"></div>
+<div class="bestSeller">
+    <h1>BestSeller Product</h1>
+    <div class="swiper-wrapper">
+        <?php foreach ($this->getBestsellerProducts() as $product){ ?>
+            <div class="swiper-slide">
+                <a href="<?php echo $product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($product, 'small_image'), null, true) ?>" ><img src="<?php echo $this->helper('catalog/image')->init($product, 'small_image')->resize(135); ?>" height="200px" width="200px" alt=""></a>
+                <?php $_productNameStripped = $this->stripTags($product->getName(), null, true); ?>
+                <div class="app-title">
+                    <a href="<?php echo $product->getProductUrl() ?>" title="<?php echo $_productNameStripped; ?>"><?php echo $this->stripTags($product->getName(), null, true); ?></a>
+                </div>
+                <div class="app-price"> <?php echo $this->getPriceHtml($product, true) ?></div>
+                <?php  ?>
+            </div>
+        <?php }?>
+    </div>
+</div>
+<script>
+
+        var bestSellerSwiper = new Swiper('.bestSeller',{
+            slidesPerView:'auto',
+            autoplay: '2000',
+            loopedSlides: 10000,
+            slidesPerViewFit: true,
+            autoResize: true,
+            visibilityFullFit: true,
+            cssWidthAndHeight: true
+//
+
+
+        });
+
+
+
+</script>
+<style>
+
+</style>

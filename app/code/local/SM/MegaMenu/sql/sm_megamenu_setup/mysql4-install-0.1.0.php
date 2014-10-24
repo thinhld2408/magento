@@ -81,7 +81,7 @@ $table = $installer->getConnection()
         'store_id', $installer->getTable('core/store'), 'store_id',
         Varien_Db_Ddl_Table::ACTION_CASCADE, Varien_Db_Ddl_Table::ACTION_CASCADE
     )
-    ->setComment('MenuManager Menu To Store Linkage Table');
+    ->setComment('Menu Manager Menu To Store Linkage Table');
 
 $installer->getConnection()->createTable($table);
 

@@ -1,0 +1,53 @@
+<style>
+    /* Demo Styles */
+
+    .bestSeller{
+        width: 99%;
+        color: black;
+        text-align: center;
+    }
+    .swiper-slide .title {
+        font-style: italic;
+        font-size: 42px;
+        margin-top: 80px;
+        margin-bottom: 0;
+        line-height: 45px;
+    }
+    .swiper-slide p {
+        font-style: italic;
+        font-size: 25px;
+    }
+    </style>
+    <div class="swiper-container bestSeller">
+        <h1>BestSeller Product</h1>
+        <div class="swiper-wrapper">
+            <?php foreach ($this->getBestsellerProducts() as $product){ ?>
+                <div class="swiper-slide">
+                    <a href="<?php echo $product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($product, 'small_image'), null, true) ?>" ><img src="<?php echo $this->helper('catalog/image')->init($product, 'small_image')->resize(135); ?>" height="200px" width="200px" alt=""></a>
+                    <?php $_productNameStripped = $this->stripTags($product->getName(), null, true); ?>
+                    <div class="app-title">
+                        <a href="<?php echo $product->getProductUrl() ?>" title="<?php echo $_productNameStripped; ?>"><?php echo $this->stripTags($product->getName(), null, true); ?></a>
+                    </div>
+                    <div class="app-price"> <?php echo $this->getPriceHtml($product, true) ?></div>
+                    <?php  ?>
+                </div>
+            <?php }?>
+        </div>
+    </div>
+<script>
+
+        var bestSellerSwiper = new Swiper('.bestSeller',{
+            slidesPerView:'auto',
+            slidesPerViewFit: false,
+            autoplay: 5000,
+            loopedSlides: 10000
+
+
+
+
+//
+
+
+        });
+</script>
+

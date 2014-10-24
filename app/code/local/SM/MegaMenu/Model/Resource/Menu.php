@@ -20,7 +20,7 @@ class SM_MegaMenu_Model_Resource_Menu extends Mage_Core_Model_Resource_Db_Abstra
      * @param   Mage_Core_Model_Abstract    $object
      * @param   mixed                       $value
      * @param   string                      $field
-     * @return  sm_megamenu_Model_Resource_Menu
+     * @return  SM_MegaMenu_Model_Resource_Menu
      */
     public function load(Mage_Core_Model_Abstract $object, $value, $field = null)
     {
@@ -48,7 +48,7 @@ class SM_MegaMenu_Model_Resource_Menu extends Mage_Core_Model_Resource_Db_Abstra
      * Perform operations after object load - add stores data
      *
      * @param Mage_Core_Model_Abstract $object
-     * @return sm_megamenu_Model_Resource_Menu
+     * @return SM_MegaMenu_Model_Resource_Menu
      */
     protected function _afterLoad(Mage_Core_Model_Abstract $object)
     {
@@ -66,7 +66,7 @@ class SM_MegaMenu_Model_Resource_Menu extends Mage_Core_Model_Resource_Db_Abstra
      * Perform operations after object save - update menu stores data
      *
      * @param Mage_Core_Model_Abstract $object
-     * @return sm_megamenu_Model_Resource_Menu
+     * @return SM_MegaMenu_Model_Resource_Menu
      */
     protected function _afterSave(Mage_Core_Model_Abstract $object)
     {
@@ -165,7 +165,7 @@ class SM_MegaMenu_Model_Resource_Menu extends Mage_Core_Model_Resource_Db_Abstra
      *
      * @param string $field
      * @param mixed  $value
-     * @param sm_megamenu_Model_Menu $object
+     * @param SM_MegaMenu_Model_Resource_Menu $object
      * @return Zend_Db_Select
      */
     protected function _getLoadSelect($field, $value, $object)

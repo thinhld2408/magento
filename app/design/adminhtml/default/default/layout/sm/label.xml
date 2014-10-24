@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<layout>
+    <productlabel_adminhtml_label_index>
+        <update handle="editor"/>
+        <reference name="content">
+            <block type="label_product/adminhtml_label" name="myModule"/>
+        </reference>
+    </productlabel_adminhtml_label_index>
+    <productlabel_adminhtml_label_edit>
+        <reference name="content">
+            <block type="label_product/adminhtml_label_edit" name="label.edit" />
+        </reference>
+    </productlabel_adminhtml_label_edit>
+</layout>

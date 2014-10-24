@@ -47,9 +47,7 @@
             <featured_product_setup>
                 <setup>
                     <module>SM_FeaturedProduct</module>
-
                 </setup>
-
                 <connection>
                     <use>core_setup</use>
                 </connection>

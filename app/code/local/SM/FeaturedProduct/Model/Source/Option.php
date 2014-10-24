@@ -14,13 +14,15 @@ class SM_FeaturedProduct_Model_Source_Option extends Mage_Eav_Model_Entity_Attri
         if (!$this->_options) {
             $this->_options = array(
 
-                array(
-                    'value' => '1',
-                    'label' => 'Yes',
-                ),
+
                 array(
                     'value' => '0',
                     'label' => 'No',
+                ),
+
+                array(
+                      'value' => '1',
+                      'label' => 'Yes',
                 )
             );
         }

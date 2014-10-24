@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<layout>
+    <default>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_css</type>
+                <file>css/idangerous.swiper.css</file>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <file>js/idangerous.swiper-2.0.min.js</file>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <file>js/cloudzoom.js</file>
+            </action>
+            <action method="addItem">
+                <type>skin_css</type>
+                <file>css/custom.css</file>
+            </action>
+        </reference>
+    </default>
+</layout>

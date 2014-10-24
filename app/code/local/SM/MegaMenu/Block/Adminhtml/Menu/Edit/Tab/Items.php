@@ -66,20 +66,15 @@ class SM_MegaMenu_Block_Adminhtml_Menu_Edit_Tab_Items extends Mage_Adminhtml_Blo
 
         $this->addColumn('item_show_type', array(
             'header'    => Mage::helper('sm_megamenu')->__('Show Type'),
-            'index'     => 'type',
+            'index'     => 'type_view',
             'type'      => 'options',
-            'options'   => $ItemModel->getAvailableTypes(),
+            'options'   => $ItemModel->getTypeView(),
         ));
         $this->addColumn('item_type', array(
             'header'    => Mage::helper('sm_megamenu')->__('Type Item'),
             'index'     => 'item_type',
             'type'      => 'options',
             'options'   => $ItemModel->getItemsTypes(),
-        ));
-
-        $this->addColumn('item_css_class', array(
-            'header'    => Mage::helper('sm_megamenu')->__('CSS Class'),
-            'index'     => 'css_class',
         ));
 
         $this->addColumn('item_position', array(

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<widgets>
+    <sm_featured type="featured_product/product_list" translate="name description" module="sm_slider">
+        <name>Featured Widget</name>
+        <description>Featured Product Widget</description>
+        <parameters>
+            <template translate="label">
+                <label>Frontend Template</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>select</type>
+                <values>
+                    <featured translate="label">
+                        <value>sm/product/featured.phtml</value>
+                        <label>Featured Product</label>
+                    </featured>
+                </values>
+            </template>
+        </parameters>
+    </sm_featured>
+</widgets>

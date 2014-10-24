@@ -11,8 +11,7 @@ class SM_MegaMenu_Model_Item extends Mage_Core_Model_Abstract
     /**
      * Menu item url open window types
      */
-    const TYPE_NEW_WINDOW = 'new_window';
-    const TYPE_SAME_WINDOW = 'same_window';
+
     const TYPE_CATEGORY_LINK = 'category_link';
     const TYPE_CUSTOM_LINK = 'custom_link';
     const TYPE_BLOCK_LINK = 'block_link';
@@ -28,15 +27,6 @@ class SM_MegaMenu_Model_Item extends Mage_Core_Model_Abstract
      *
      * @return array
      */
-    public function getAvailableTypes()
-    {
-        $types = array(
-            self::TYPE_SAME_WINDOW => Mage::helper('sm_megamenu')->__('Same Window'),
-            self::TYPE_NEW_WINDOW => Mage::helper('sm_megamenu')->__('New Window'),
-        );
-
-        return $types;
-    }
     public function getItemsTypes()
     {
         $types = array(

@@ -66,10 +66,11 @@ class SM_MegaMenu_Model_Resource_Item_Collection
         $result['0'] = Mage::helper('sm_megamenu')->__('Root');
 
         foreach ($this as $item) {
-//            if($item->getData('item_type') != 'category_link' || $item->getData('item_type') != 'block_link')
-//            {
+
+            if($item->getData('item_type') == "custom_link" )
+            {
                 $result[$item->getData('item_id')] = $item->getData('title');
-//            }
+            }
         }
 
         return $result;

@@ -55,10 +55,7 @@ class SM_MegaMenu_Block_Adminhtml_Menu_Grid extends Mage_Adminhtml_Block_Widget_
             'options'   => Mage::getSingleton('sm_megamenu/menu')->getAvailableTypes(),
         ));
 
-        $this->addColumn('css_class', array(
-            'header'    => Mage::helper('sm_megamenu')->__('CSS Class'),
-            'index'     => 'css_class',
-        ));
+
 
         if (!Mage::app()->isSingleStoreMode()) {
             $this->addColumn('store_id', array(

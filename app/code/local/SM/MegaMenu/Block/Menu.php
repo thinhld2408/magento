@@ -1,109 +1,70 @@
 <?php
+
 class SM_MegaMenu_Block_Menu extends Mage_Core_Block_Template
 {
-    public function getStoreMenu(){
-
-    }
-    public function getChildMenu()
+    /*
+     * Start Build Menu
+     *
+     */
+    public function buildMenu()
     {
-        $listMenu = Mage::getModel('sm_megamenu/item')->getCollection()->getData();
-        $menuData = array();
-        foreach ($listMenu as $value) {
-            $menuData['items'][$value['item_id']] = $value; //Lưu dữ liệu các biến có id khác nh
-            $menuData['parent'][$value['parent_id']][] = $value['item_id'];
-        }
-        return $menuData;
+        $id = Mage::getStoreConfig('');
     }
 
-    public function getMenu($parent, $menuData = null, $class, $start = true, $child = false)
+    protected function  getMenu($parent, $start = true)
     {
-        $menuData = $this->getChildMenu();
+        $listMenu = Mage::getModel('sm_megamenu/item')->getCollection()
+            ->addFieldToFilter("is_active", "1")
+            ->getData();
         $html = "";
-        if (!$child) {
-            if ($start == true) {
-                $html .= "<ul class='zetta-menu zm-response-simple zm-full-width'>";
+
+        if ($start == true) {
+                $parentId = 0;
+                $html .= "<ul class='zetta-menu zm-response-simple zm-full-width zm-effect-slide-right'>";
                 $html .= "<li class='zm-logo'>
-                            <a href=''><img src='".Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA)."/logo.png' alt='logo'>
+                            <a href='".Mage::getBaseUrl()."'><img src='".Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA)."/logo.png' alt='logo'>
                             </a>
-                        </li>";
+                          </li>";
 
             } else {
-                $html .= "";
+                $parentId = $parent;
+                $html .= "<ul class='w-300'>";
             }
-        } else {
-            $html .= "<ul class='w-150'>";
-        }
-        if (isset($menuData['parent'][$parent])) {
-            foreach ($menuData['parent'][$parent] as $value) {
-                if ($menuData['items'][$value]['item_type'] == 'block_link') {
-//                    $html .= "<a href='" . $menuData['items'][$value]['url'] . "'>" . $menuData['items'][$value]['title'] . "<i class='zm-caret fa fa-angle-down'></i></a>";
-                    $class = "zm-content-full";
-                }
-                if ($this->isHaveChild($menuData['items'][$value]['item_id'], $menuData['items'])) {
-                    $html .= "<li class='" . $class . "' style='float:left'>";
-                    if ($menuData['items'][$value]['item_type'] == 'custom_link') {
-                        $html .= "<a href='" . $menuData['items'][$value]['url'] . "'>" . $menuData['items'][$value]['title'] . "<i class='zm-caret fa fa-angle-down'></i></a>";
-                    } elseif ($menuData['items'][$value]['item_type'] == 'category_link') {
-                        $html .= "<a href='" . $menuData['items'][$value]['url'] . "'>" . $menuData['items'][$value]['title'] . "<i class='zm-caret fa fa-angle-down'></i></a>";
-                        $haveChild = $this->checkHaveChild($menuData['items'][$value]['item_category']);
-                        if ($haveChild == true) {
-                            $html .= $this->getTreeCategories($menuData['items'][$value]['item_category'], true);
-                        }
-                    }elseif($menuData['items'][$value]['item_type'] == 'block_link') {
+        $menuData = array();
+        foreach ($listMenu as $value) {
+            $menuData[$value['item_id']] = $value;
+            if ($menuData[$value['item_id']]['parent_id'] == $parentId) {
 
-                        $html .= $this->getBlockLink($menuData['items'][$value]['cms_block']);
-                    }
-                    $html .= $this->getMenu($value, $menuData, $class, false, true);
+                if ($menuData[$value['item_id']]['item_type'] == 'category_link') {
 
-                } else {
-
-                    $html .= "<li class='" . $class . "'style='float:left'>";
-                    if ($menuData['items'][$value]['item_type'] == 'custom_link') {
-                        $html .= "<a href='" . $menuData['items'][$value]['url'] . "'>" . $menuData['items'][$value]['title'] . "</a>";
-                    } elseif ($menuData['items'][$value]['item_type'] == 'category_link') {
-                        $html .= "<a href='" . $menuData['items'][$value]['url'] . "'>" . $menuData['items'][$value]['title'];
-
-                        $haveChild = $this->checkHaveChild($menuData['items'][$value]['item_category']);
-                        if ($haveChild == true) {
-                            $html .= "<i class='zm-caret fa fa-angle-down'></i></a>";
-                            $html .= $this->getTreeCategories($menuData['items'][$value]['item_category'], true);
-                        } else {
-                            $html .= "</a>";
-
-                        }
-
-                    }elseif($menuData['items'][$value]['item_type'] == 'block_link'){
-//                        $html .= "<li class='zm-content'>";
-
-                        $html .= $this->getBlockLink($menuData['items'][$value]['cms_block']);
-//                        $html .= "</li>";
-                    }
-                    $html .= $this->getMenu($value, $menuData, $class, false);
+                    $html .= $this->buildCategoryLink($menuData[$value['item_id']]);
 
                 }
+                if ($menuData[$value['item_id']]['item_type'] == 'block_link') {
+                    $html .= "<li class='zm-content-full'>";
+                    $html .= "<span>" . $menuData[$value['item_id']]['title'] . "</span>";
+                    $html .= $this->buildBlockLink($menuData[$value['item_id']]);
 
+                }
+                if ($menuData[$value['item_id']]['item_type'] == 'custom_link') {
+                    $html .= "<li>";
+                    if($menuData[$value['item_id']]['url'] != null){
+                        $html .= "<a href='".$menuData[$value['item_id']]['url']."'>" . $menuData[$value['item_id']]['title'] . "</a>";
+                    }else{
+                        $html .= "<span>" . $menuData[$value['item_id']]['title'] . "</span>";
+                    }
+                     if($this->isHaveChild($menuData[$value['item_id']]['item_id'],$listMenu))
+                     {
+                         $html .= $this->buildCustomLink($menuData[$value['item_id']]['item_id']);
+                     }
+                }
                 $html .= "</li>";
             }
         }
-        if (!$child) {
-            if ($start == true) {
-                $html .= "</ul>";
-            } else {
-                $html .= "";
-        $allCats = Mage::getModel('catalog/category')->getCollection()
-            ->addAttributeToSelect('*')
-            ->addAttributeToFilter('is_active', '1')
-            ->addAttributeToFilter('include_in_menu', '1')
-            ->addAttributeToFilter('parent_id', array('eq' => $parentId))
-            ->addAttributeToSort('position', 'asc')
-            ->addUrlRewriteToResult();
-            }
-
-        } else {
-            $html .= "</ul>";
-        }
+        $html .= "</ul>";
         return $html;
     }
+
 
     public function isHaveChild($id, $menu)
     {
@@ -113,6 +74,63 @@ class SM_MegaMenu_Block_Menu extends Mage_Core_Block_Template
             }
         }
         return false;
+    }
+
+    public function buildCustomLink($id){
+        $html  ="";
+        $html .="<ul>";
+        $listChild = Mage::getModel('sm_megamenu/item')->getCollection()
+            ->addFieldToFilter("is_active", "1")
+            ->addFieldToFilter("parent_id", array('eq'=>$id))
+            ->getData();
+        foreach($listChild as $value){
+            $html .= "<li>";
+            if($value['url'] != null){
+                $html .= "<a href='".$value['url']."'>";
+                $html .= $value['title'];
+                $html .= "</a>";
+            }else{
+                $html .= "<span>";
+                $html .= $value['title'];
+                $html .= "</span>";
+            }
+
+            $haveChild = $this->isHaveChild($value['item_id'], $listChild);
+            if($haveChild == true){
+                $html .= $this->buildCustomLink($value['item_id']);
+            }
+
+            $html .= "</li>";
+        }
+        $html .="</ul>";
+
+        return $html;
+    }
+
+    protected function buildCategoryLink($data)
+    {
+        $html = "";
+
+        if ($data['type_view'] == "tree") {
+            $html .= "<li class='zm-content'>";
+            $html .= "<span>" . $data['title'] . "</span>";
+            $haveChild = $this->checkHaveChild($data['item_list_id']);
+            if ($haveChild == true) {
+                $html .= $this->getTreeCategories($data['item_list_id'], true);
+            } else {
+                $html .= $this->getTreeCategories($data['item_list_id'], false);
+            }
+        } elseif ($data['type_view'] == "column") {
+            $html .= "<li class='zm-content-full'>";
+            $html .= "<a href=''>" . $data['title'] . "</a>";
+            $html .= "<div>";
+            $html .= "<div class='zm-row'>";
+            $html .= $this->buildCategoryColumn($data['item_list_id']);
+            $html .= "</div>";
+            $html .= "</div>";
+
+        }
+        return $html;
     }
 
     public function checkHaveChild($id)
@@ -127,7 +145,75 @@ class SM_MegaMenu_Block_Menu extends Mage_Core_Block_Template
 
     }
 
-    function getTreeCategories($parentId, $haveChild)
+    protected function buildCategoryColumn($data)
+    {
+        $html = "";
+        $listCate = explode(",",$data);
+
+        foreach ($listCate as $cateIds) {
+            $cat = Mage::getModel('catalog/category')->load($cateIds);
+            $img = $cat->getThumbnail();
+            $name = $cat->getName();
+            if ($cat != "") {
+                $html .= "<div class='zm-col c-3'>";
+                $html .= "<h4>".$name."</h4>";
+                $_img_path = Mage::getBaseUrl('media') . 'catalog/category/'; // Get category image path
+                $html .=   "<img width='60px' height='80px' src='".$_img_path.$img."'>";
+                $html .= $this->getChildCategory($cateIds);
+                $html .= "</div>";
+            }
+        }
+
+        return $html;
+    }
+    protected function getChildCategory($id){
+        $html ="";
+        $allCats = Mage::getModel('catalog/category')->getCollection()
+            ->addAttributeToSelect('*')
+            ->addAttributeToFilter('is_active', '1')
+            ->addAttributeToFilter('include_in_menu', '1')
+            ->addAttributeToFilter('parent_id', array('eq' => $id))
+            ->addAttributeToSort('position', 'asc')
+            ->addUrlRewriteToResult();
+        $html .="<ul>";
+            foreach($allCats as $category){
+                $html .= '<li><a href="' . $category->getUrl($category) . '">' . $category->getName();
+                $html .= "</a>";
+                $html .= '</li>';
+            }
+        $html .="</ul>";
+
+        return $html;
+    }
+
+    public function getBlockLink($blockId)
+    {
+
+        $html = "";
+        $html .= "<div class='zm-col'>";
+        $html .= "<h3>Block</h3>";
+        $html .= $this->getLayout()->createBlock('cms/block')->setBlockId($blockId)->toHtml();
+        $html .= "</div>";
+
+        return $html;
+    }
+
+    protected function buildBlockLink($data)
+    {
+        $html = "";
+        $listBlock = explode(",", $data["item_list_id"]);
+        $html .= "<div>";
+        $html .= "<div class='zm-row'>";
+        foreach ($listBlock as $block) {
+            $html .= $this->getBlockLink($block);
+        }
+        $html .= "</div>";
+        $html .= "</div>";
+        return $html;
+    }
+
+
+    public function getTreeCategories($parentId, $haveChild)
     {
         $html = "";
 
@@ -141,12 +227,13 @@ class SM_MegaMenu_Block_Menu extends Mage_Core_Block_Template
         if ($haveChild == false) {
             $html .= "<ul class='w-150'>";
 
+
         } elseif ($haveChild == true) {
             $html .= '<ul class="w-150">';
-//            $iClass = "<i class='zm-caret fa fa-angle-down'></i>";
+             $html .= "<i class='zm-caret fa fa-angle-down'></i>";
         }
         foreach ($allCats as $category) {
-            $html .= '<li><a href="'.$category->getUrl($category).'">' . $category->getName() ;
+            $html .= '<li><a href="' . $category->getUrl($category) . '">' . $category->getName();
             $html .= "</a>";
             $subCats = $category->getChildren();
             if ($subCats != '') {
@@ -158,27 +245,8 @@ class SM_MegaMenu_Block_Menu extends Mage_Core_Block_Template
         return $html;
     }
 
-    public function getBlockLink($blockId)
-    {
-        $html ="";
-//        $html .= "<li class='zm-content-full'>";
-        $html .= "<a>Content</a>";
-        $html .="<ul class='zetta-menu>";
-        $html .= "<li class='zm-content-full'>";
-        $html .="<div class='zm-row'>";
-        $html .= $this->getLayout()->createBlock('cms/block')->setBlockId($blockId)->toHtml();
-        $html .= "</div>";
-        $html .= "</li>";
-        $html .="</ul>";
-//        $html .= "</li>";
-        return $html;
-    }
 
-    public function getCustomLink()
-    {
 
-        return "custom_link";
-    }
 
 }
 

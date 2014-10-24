@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <layout>
-    <sm_megamenu_admin_adminhtml_index_index>
+    <adminhtml_adminhtml_menu_index>
         <reference name="content">
             <block type="sm_megamenu/adminhtml_menu" name="menumanager_menu_grid" />
         </reference>
-    </sm_megamenu_admin_adminhtml_index_index>
+    </adminhtml_adminhtml_menu_index>
 
-    <sm_megamenu_admin_adminhtml_index_edit>
+    <adminhtml_adminhtml_menu_edit>
         <reference name="content">
             <block type="sm_megamenu/adminhtml_menu_edit" name="menumanager_menu_edit" />
         </reference>
@@ -17,11 +17,11 @@
                 <action method="addTab"><name>main_section</name><block>menumanager_menu_edit_tab_main</block></action>
             </block>
         </reference>
-    </sm_megamenu_admin_adminhtml_index_edit>
+    </adminhtml_adminhtml_menu_edit>
 
-    <sm_megamenu_admin_adminhtml_index_edit_item>
+    <adminhtml_adminhtml_menu_edit_item>
         <reference name="content">
             <block type="sm_megamenu/adminhtml_menu_item_edit" name="menumanager_menu_item_edit" />
         </reference>
-    </sm_megamenu_admin_adminhtml_index_edit_item>
+    </adminhtml_adminhtml_menu_edit_item>
 </layout>

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<layout>
+<default>
+    <reference name="head">
+    <action method="addItem">
+        <type>skin_css</type>
+        <file>css/red.css</file>
+    </action>
+    <action method="addItem">
+        <type>skin_css</type>
+        <file>css/font-awesome.min.css</file>
+    </action>
+</reference>
+    <block type="sm_megamenu/menu" name="topMenu" template="sm/megamenu.phtml"/>
+    <reference name="header">
+        <action method="unsetChild" ifconfig="megamenu/config/enabled">
+            <child>topMenu</child>
+        </action>
+        <action method="append" ifconfig="megamenu/config/enabled">
+            <block>topMenu</block>
+        </action>
+    </reference>
+</default>
+</layout>
